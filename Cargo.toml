@@ -1,0 +1,7 @@
+[package]
+name = "video_02_bundles_resources"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = "0.13.0"
