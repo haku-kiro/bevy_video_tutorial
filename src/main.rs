@@ -19,6 +19,7 @@ use bevy::prelude::*;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
+        // You should import your events prior to your plugins incase they are required
         .add_event::<GameOver>()
         .add_plugins((EnemyPlugin, PlayerPlugin, ScorePlugin, StarPlugin))
         .add_systems(Startup, spawn_camera)
