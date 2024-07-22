@@ -16,6 +16,7 @@ impl Plugin for PlayerPlugin {
                 enemy_hit_player,
                 player_hit_star,
             )
+                // Don't over use this; forcing systems to not run in parallel
                 .chain(),
         );
     }
