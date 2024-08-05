@@ -1,6 +1,7 @@
 use bevy::app::AppExit;
 use bevy::{prelude::*, window::PrimaryWindow};
 
+use crate::game::SimulationState;
 use crate::{events::*, AppState};
 
 pub fn spawn_camera(mut commands: Commands, window_query: Query<&Window, With<PrimaryWindow>>) {
@@ -28,11 +29,14 @@ pub fn transition_to_game_state(
 pub fn transition_to_main_menu_state(
     app_state: Res<State<AppState>>,
     keyboard_input: Res<ButtonInput<KeyCode>>,
-    mut next_state: ResMut<NextState<AppState>>,
+    mut next_app_state: ResMut<NextState<AppState>>,
+    mut next_simulation: ResMut<NextState<SimulationState>>,
 ) {
     if keyboard_input.pressed(KeyCode::KeyM) {
         if *app_state.get() != AppState::MainMenu {
-            next_state.set(AppState::MainMenu);
+            // Pause the game when you go to the menu
+            next_simulation.set(SimulationState::Paused);
+            next_app_state.set(AppState::MainMenu);
             println!("In menu state");
         }
     }
