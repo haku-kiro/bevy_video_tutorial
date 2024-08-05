@@ -2,9 +2,8 @@ use bevy::prelude::*;
 use resources::*;
 use systems::*;
 
+use crate::game::SimulationState;
 use crate::AppState;
-
-use super::SimulationState;
 
 pub mod components;
 pub mod resources;
