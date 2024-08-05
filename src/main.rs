@@ -18,7 +18,15 @@ fn main() {
         .add_plugins(MainMenuPlugin)
         .add_plugins(GamePlugin)
         .add_systems(Startup, spawn_camera)
-        .add_systems(Update, (exit_game, handle_game_over))
+        .add_systems(
+            Update,
+            (
+                transition_to_game_state,
+                transition_to_main_menu_state,
+                exit_game,
+                handle_game_over,
+            ),
+        )
         .run();
 }
 

@@ -9,8 +9,14 @@ pub fn toggle_simulation(
 ) {
     if keyboard_input.pressed(KeyCode::Space) {
         match simulation_state.get() {
-            SimulationState::Running => next_state.set(SimulationState::Paused),
-            SimulationState::Paused => next_state.set(SimulationState::Running),
+            SimulationState::Running => {
+                next_state.set(SimulationState::Paused);
+                println!("Paused");
+            }
+            SimulationState::Paused => {
+                next_state.set(SimulationState::Running);
+                println!("Playing");
+            }
         }
     }
 }
