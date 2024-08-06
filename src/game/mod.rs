@@ -20,9 +20,12 @@ impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
         app.init_state::<SimulationState>()
             .add_event::<GameOver>()
+            .add_systems(OnEnter(AppState::Game), pause_simulation)
             .add_plugins((EnemyPlugin, PlayerPlugin, ScorePlugin, StarPlugin))
             // Will only run if we're in the Game state
-            .add_systems(Update, toggle_simulation.run_if(in_state(AppState::Game)));
+            .add_systems(Update, toggle_simulation.run_if(in_state(AppState::Game)))
+            // Not sure about this?
+            .add_systems(OnExit(AppState::Game), resume_simulation);
     }
 }
 
